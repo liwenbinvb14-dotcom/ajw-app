@@ -10,8 +10,19 @@ export default function Products() {
     const { t, i18n } = useTranslation();
     const products = useStore((state) => state.products);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [editingProduct, setEditingProduct] = useState(null);
     const [searchTerm, setSearchTerm] = useState('');
     const [selectedCategory, setSelectedCategory] = useState('All');
+
+    const handleEditProduct = (product) => {
+        setEditingProduct(product);
+        setIsModalOpen(true);
+    };
+
+    const handleAddProduct = () => {
+        setEditingProduct(null);
+        setIsModalOpen(true);
+    };
 
     // Direction-aware styles
     const isRtl = i18n.language === 'ar';
@@ -30,15 +41,15 @@ export default function Products() {
                 </div>
 
                 <button
-                    onClick={() => setIsModalOpen(true)}
-                    className="flex items-center gap-2 bg-primary-600 text-white px-4 py-2.5 rounded-lg hover:bg-primary-700 transition-colors shadow-sm"
+                    onClick={handleAddProduct}
+                    className="flex items-center gap-2 bg-gradient-to-r from-primary-600 to-primary-500 text-white px-5 py-2.5 rounded-xl hover:shadow-lg hover:shadow-primary-500/30 transition-all active:scale-95 shadow-sm font-bold"
                 >
                     <Plus size={20} />
                     <span>{t('products.addProduct')}</span>
                 </button>
             </header>
 
-            <div className="sticky top-0 bg-gray-50/95 backdrop-blur z-10 py-2 space-y-4">
+            <div className="sticky top-0 bg-white/70 backdrop-blur-xl z-20 py-4 -mx-6 px-6 space-y-4 border-b border-white/20">
                 <div className="flex gap-2">
                     <div className="relative flex-1 group">
                         <input
@@ -71,13 +82,24 @@ export default function Products() {
                 </div>
             </div>
 
-            <div className="grid grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-3 pb-20">
+            <div className="grid grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-4 pb-24">
                 {filteredProducts.map((product) => (
-                    <ProductCard key={product.id} product={product} />
+                    <ProductCard
+                        key={product.id}
+                        product={product}
+                        onEdit={() => handleEditProduct(product)}
+                    />
                 ))}
             </div>
 
-            <ProductModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+            <ProductModal
+                isOpen={isModalOpen}
+                onClose={() => {
+                    setIsModalOpen(false);
+                    setEditingProduct(null);
+                }}
+                initialData={editingProduct}
+            />
         </div>
     );
 }

@@ -9,13 +9,27 @@ export function ProductModal({ isOpen, onClose, initialData = null }) {
     const addProduct = useStore((state) => state.addProduct);
     const updateProduct = useStore((state) => state.updateProduct);
 
-    const [formData, setFormData] = useState(initialData || {
+    const [formData, setFormData] = useState({
         name: '',
         price: '',
         category: '',
         quantity: '',
-        image: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=2070&auto=format&fit=crop' // Default placeholder
+        image: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=2070&auto=format&fit=crop'
     });
+
+    React.useEffect(() => {
+        if (initialData) {
+            setFormData(initialData);
+        } else {
+            setFormData({
+                name: '',
+                price: '',
+                category: '',
+                quantity: '',
+                image: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=2070&auto=format&fit=crop'
+            });
+        }
+    }, [initialData, isOpen]);
 
     if (!isOpen) return null;
 
