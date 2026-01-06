@@ -49,7 +49,15 @@ export function CartDrawer({ isOpen, onClose }) {
                                         <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
                                     </div>
                                     <div className="flex-1 min-w-0">
-                                        <h4 className="font-medium text-gray-900 line-clamp-1">{item.name}</h4>
+                                        <div className="flex justify-between items-start">
+                                            <h4 className="font-medium text-gray-900 line-clamp-1">{item.name}</h4>
+                                            <button
+                                                onClick={() => removeFromCart(item.id)}
+                                                className="p-1 text-gray-400 hover:text-red-500 transition-colors"
+                                            >
+                                                <Trash2 size={16} />
+                                            </button>
+                                        </div>
                                         <p className="text-sm text-gray-500 mb-2">{item.category}</p>
                                         <div className="flex justify-between items-center">
                                             <p className="font-bold text-accent">{item.price * item.quantity} {t('common.currency')}</p>
@@ -69,7 +77,13 @@ export function CartDrawer({ isOpen, onClose }) {
                                 <span>{t('cart.total')}</span>
                                 <span>{total.toLocaleString()} {t('common.currency')}</span>
                             </div>
-                            <button className="w-full bg-primary-600 text-white py-3.5 rounded-xl font-bold hover:bg-primary-700 transition-all shadow-lg shadow-primary-600/20 active:scale-[0.98]">
+                            <button
+                                onClick={() => {
+                                    alert(t('orders.statuses.processing') + '...');
+                                    onClose();
+                                }}
+                                className="w-full bg-primary-600 text-white py-3.5 rounded-xl font-bold hover:bg-primary-700 transition-all shadow-lg shadow-primary-600/20 active:scale-[0.98]"
+                            >
                                 {t('cart.checkout')}
                             </button>
                         </div>

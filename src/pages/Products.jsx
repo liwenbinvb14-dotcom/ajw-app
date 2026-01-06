@@ -10,9 +10,17 @@ export default function Products() {
     const { t, i18n } = useTranslation();
     const products = useStore((state) => state.products);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [searchTerm, setSearchTerm] = useState('');
+    const [selectedCategory, setSelectedCategory] = useState('All');
 
     // Direction-aware styles
     const isRtl = i18n.language === 'ar';
+
+    const filteredProducts = products.filter(product => {
+        const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase());
+        const matchesCategory = selectedCategory === 'All' || product.category === t(`products.categories.${selectedCategory.toLowerCase()}`);
+        return matchesSearch && matchesCategory;
+    });
 
     return (
         <div className="p-6 space-y-6">
@@ -36,6 +44,8 @@ export default function Products() {
                         <input
                             type="text"
                             placeholder={t('products.searchPlaceholder')}
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
                             className={`w-full ${isRtl ? 'pl-4 pr-12' : 'pl-12 pr-4'} py-2.5 rounded-full border-2 border-primary-500/20 focus:border-primary-500 focus:ring-0 outline-none transition-all shadow-sm bg-white`}
                         />
                         <div className={`absolute ${isRtl ? 'right-1' : 'left-1'} top-1 bottom-1 w-10 bg-primary-500 rounded-full flex items-center justify-center text-white shadow-sm`}>
@@ -45,13 +55,16 @@ export default function Products() {
                 </div>
 
                 <div className="flex gap-2 overflow-x-auto pb-2 no-scrollbar mask-gradient">
-                    {['All', 'Rings', 'Necklaces', 'Bracelets', 'Earrings'].map((cat, i) => (
-                        <button key={cat} className={cn(
-                            "px-4 py-1.5 rounded-full text-sm whitespace-nowrap transition-all border",
-                            i === 0
-                                ? "bg-primary-50 text-primary-600 border-primary-200 font-bold shadow-sm"
-                                : "bg-white text-gray-600 border-gray-100 hover:border-primary-200"
-                        )}>
+                    {['All', 'Rings', 'Necklaces', 'Bracelets', 'Earrings'].map((cat) => (
+                        <button
+                            key={cat}
+                            onClick={() => setSelectedCategory(cat)}
+                            className={cn(
+                                "px-4 py-1.5 rounded-full text-sm whitespace-nowrap transition-all border",
+                                selectedCategory === cat
+                                    ? "bg-primary-50 text-primary-600 border-primary-200 font-bold shadow-sm"
+                                    : "bg-white text-gray-600 border-gray-100 hover:border-primary-200"
+                            )}>
                             {cat === 'All' ? t('products.all') : t(`products.categories.${cat.toLowerCase()}`)}
                         </button>
                     ))}
@@ -59,7 +72,7 @@ export default function Products() {
             </div>
 
             <div className="grid grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-3 pb-20">
-                {products.map((product) => (
+                {filteredProducts.map((product) => (
                     <ProductCard key={product.id} product={product} />
                 ))}
             </div>
