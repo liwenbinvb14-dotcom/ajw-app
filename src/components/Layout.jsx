@@ -3,6 +3,7 @@ import { Outlet } from 'react-router-dom';
 import { Sidebar } from './Sidebar';
 import { MobileNav } from './MobileNav';
 import { CartDrawer } from './CartDrawer';
+import { ChatWidget } from './ChatWidget';
 import { useStore } from '../store/useStore';
 
 export function Layout() {
@@ -19,6 +20,7 @@ export function Layout() {
 
             <MobileNav />
             <CartDrawer isOpen={isCartOpen} onClose={toggleCart} />
+            <ChatWidget />
         </div>
     );
 }

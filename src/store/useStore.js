@@ -36,8 +36,20 @@ export const useStore = create((set) => ({
         }
     ],
     cart: [],
+    orders: [
+        { id: '#ORD-001', customer: 'مجوهرات الأمل', date: '2025-01-05', total: 4500, status: 'pending', items: 5 },
+        { id: '#ORD-002', customer: 'أناقة الخليج', date: '2025-01-04', total: 12500, status: 'completed', items: 12 },
+    ],
+    customers: [
+        { id: 'c1', name: 'مجوهرات الأمل', contact: 'أحمد محمد', email: 'ahmed@example.com', phone: '+966 50 000 0000', orders: 15, totalSpent: 150000 },
+        { id: 'c2', name: 'أناقة الخليج', contact: 'سارة العتيبي', email: 'sara@example.com', phone: '+966 55 555 5555', orders: 8, totalSpent: 85000 },
+    ],
+    user: {
+        name: 'Guest User',
+        role: 'user', // 'user' or 'admin'
+    },
+    setRole: (role) => set((state) => ({ user: { ...state.user, role } })),
     addToCart: (product, qty = 1) => set((state) => {
-        // Basic cart logic
         const existing = state.cart.find(item => item.id === product.id);
         if (existing) {
             return {
@@ -49,6 +61,25 @@ export const useStore = create((set) => ({
             };
         }
         return { cart: [...state.cart, { ...product, quantity: qty }] };
+    }),
+    placeOrder: () => set((state) => {
+        if (state.cart.length === 0) return state;
+
+        const total = state.cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        const newOrder = {
+            id: `#ORD-${Math.floor(Math.random() * 1000).toString().padStart(3, '0')}`,
+            customer: state.user.name,
+            date: new Date().toISOString().split('T')[0],
+            total: total,
+            status: 'pending',
+            items: state.cart.reduce((sum, item) => sum + item.quantity, 0)
+        };
+
+        return {
+            orders: [newOrder, ...state.orders],
+            cart: [],
+            isCartOpen: false
+        };
     }),
     addProduct: (product) => set((state) => ({
         products: [...state.products, { ...product, id: Math.random().toString(36).substr(2, 9) }]

@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { LayoutDashboard, Package, ShoppingCart, Users, ShoppingBag } from 'lucide-react';
+import { LayoutDashboard, Package, ShoppingCart, Users, ShoppingBag, Settings } from 'lucide-react';
 import { cn } from '../lib/utils';
 import { useStore } from '../store/useStore';
 import { useTranslation } from 'react-i18next';
@@ -15,7 +15,8 @@ export function MobileNav() {
         { icon: Package, label: t('nav.products'), to: '/products' },
         { icon: null, label: t('nav.cart'), isCart: true },
         { icon: ShoppingCart, label: t('nav.orders'), to: '/orders' },
-        { icon: Users, label: t('nav.customers'), to: '/customers' },
+        // { icon: Users, label: t('nav.customers'), to: '/customers' },
+        { icon: Settings, label: t('nav.settings'), to: '/profile' },
     ];
 
     if (!toggleCart) return null; // Safety check

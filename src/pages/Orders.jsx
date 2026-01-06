@@ -6,13 +6,13 @@ import { useTranslation } from 'react-i18next';
 export default function Orders() {
     const { t, i18n } = useTranslation();
     const isRtl = i18n.language === 'ar';
+    const orders = useStore((state) => state.orders);
+    const [searchTerm, setSearchTerm] = React.useState('');
 
-    // Mock orders since we don't have order history in store yet
-    const orders = [
-        { id: '#ORD-001', customer: 'مجوهرات الأمل', date: '2025-01-05', total: 4500, status: 'pending', items: 5 },
-        { id: '#ORD-002', customer: 'أناقة الخليج', date: '2025-01-04', total: 12500, status: 'completed', items: 12 },
-        { id: '#ORD-003', customer: 'متجر الجوهرة', date: '2025-01-04', total: 3200, status: 'processing', items: 3 },
-    ];
+    const filteredOrders = orders.filter(order =>
+        order.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        order.customer.toLowerCase().includes(searchTerm.toLowerCase())
+    );
 
     const statusStyles = {
         pending: 'bg-amber-100 text-amber-700',
@@ -36,6 +36,8 @@ export default function Orders() {
                         <input
                             type="text"
                             placeholder={t('products.searchPlaceholder')}
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
                             className={`w-full ${isRtl ? 'pl-4 pr-10' : 'pl-10 pr-4'} py-2 rounded-lg border border-gray-200 focus:ring-2 focus:ring-primary-500 outline-none`}
                         />
                     </div>
@@ -59,7 +61,7 @@ export default function Orders() {
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-gray-100">
-                            {orders.map((order) => (
+                            {filteredOrders.map((order) => (
                                 <tr key={order.id} className="hover:bg-gray-50 transition-colors">
                                     <td className="px-6 py-4 font-medium text-gray-900">{order.id}</td>
                                     <td className="px-6 py-4 text-gray-700">{order.customer}</td>

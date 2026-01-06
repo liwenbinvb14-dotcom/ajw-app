@@ -1,14 +1,10 @@
-import React from 'react';
 import { Search, Mail, Phone, MoreHorizontal } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { useStore } from '../store/useStore';
 
 export default function Customers() {
     const { t } = useTranslation();
-    const customers = [
-        { id: 1, name: 'مجوهرات الأمل', contact: 'أحمد محمد', email: 'ahmed@example.com', phone: '+966 50 000 0000', orders: 15, totalSpent: 150000 },
-        { id: 2, name: 'أناقة الخليج', contact: 'سارة العتيبي', email: 'sara@example.com', phone: '+966 55 555 5555', orders: 8, totalSpent: 85000 },
-        { id: 3, name: 'لمسات ذهبية', contact: 'خالد العنزي', email: 'khaled@example.com', phone: '+966 54 444 4444', orders: 22, totalSpent: 220000 },
-    ];
+    const customers = useStore((state) => state.customers);
 
     return (
         <div className="p-6 space-y-6">

@@ -48,7 +48,18 @@ export function ProductCard({ product }) {
                         <ShoppingCart size={14} fill="currentColor" />
                         {t('products.addToCart')}
                     </button>
-                    {/* Optional secondary button could go here */}
+                    {useStore.getState().user.role === 'admin' && (
+                        <button
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                // This would ideally open the modal in edit mode
+                                alert("Admin Edit Mode: " + product.name);
+                            }}
+                            className="w-8 h-8 rounded-full bg-gray-100 text-gray-600 flex items-center justify-center hover:bg-primary-50 hover:text-primary-600 transition-colors"
+                        >
+                            <Edit size={14} />
+                        </button>
+                    )}
                 </div>
             </div>
         </div>

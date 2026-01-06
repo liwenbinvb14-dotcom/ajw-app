@@ -1,15 +1,18 @@
-import React from 'react';
 import { Package, ShoppingBag, Users } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { LanguageSwitcher } from '../components/LanguageSwitcher';
+import { useStore } from '../store/useStore';
 
 export default function Dashboard() {
     const { t } = useTranslation();
+    const products = useStore((state) => state.products);
+    const orders = useStore((state) => state.orders);
+    const customers = useStore((state) => state.customers);
 
     const stats = [
-        { label: t('dashboard.totalProducts'), value: '124', icon: Package, color: 'bg-blue-50 text-blue-600' },
-        { label: t('dashboard.newOrders'), value: '12', icon: ShoppingBag, color: 'bg-green-50 text-green-600' },
-        { label: t('dashboard.totalCustomers'), value: '45', icon: Users, color: 'bg-purple-50 text-purple-600' },
+        { label: t('dashboard.totalProducts'), value: products.length.toString(), icon: Package, color: 'bg-blue-50 text-blue-600' },
+        { label: t('dashboard.newOrders'), value: orders.filter(o => o.status === 'pending').length.toString(), icon: ShoppingBag, color: 'bg-green-50 text-green-600' },
+        { label: t('dashboard.totalCustomers'), value: customers.length.toString(), icon: Users, color: 'bg-purple-50 text-purple-600' },
     ];
 
     return (

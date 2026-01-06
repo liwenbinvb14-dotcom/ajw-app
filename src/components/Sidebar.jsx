@@ -14,6 +14,7 @@ export function Sidebar() {
         { icon: Package, label: t('nav.products'), to: '/products' },
         { icon: ShoppingCart, label: t('nav.orders'), to: '/orders' },
         { icon: Users, label: t('nav.customers'), to: '/customers' },
+        { icon: Settings, label: t('nav.settings'), to: '/profile' },
     ];
 
     return (
@@ -42,10 +43,6 @@ export function Sidebar() {
             </nav>
 
             <div className="p-4 border-t border-gray-100 space-y-4">
-                <button className="flex items-center gap-3 px-4 py-3 w-full text-gray-500 hover:text-primary-700 transition-colors">
-                    <Settings size={20} />
-                    <span>{t('nav.settings')}</span>
-                </button>
                 <LanguageSwitcher className="justify-center" />
             </div>
         </aside>

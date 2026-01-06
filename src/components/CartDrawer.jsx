@@ -79,8 +79,8 @@ export function CartDrawer({ isOpen, onClose }) {
                             </div>
                             <button
                                 onClick={() => {
+                                    useStore.getState().placeOrder();
                                     alert(t('orders.statuses.processing') + '...');
-                                    onClose();
                                 }}
                                 className="w-full bg-primary-600 text-white py-3.5 rounded-xl font-bold hover:bg-primary-700 transition-all shadow-lg shadow-primary-600/20 active:scale-[0.98]"
                             >
