@@ -1,0 +1,80 @@
+{
+    "nav": {
+        "dashboard": "Dashboard",
+        "products": "Products",
+        "orders": "Orders",
+        "customers": "Customers",
+        "settings": "Settings",
+        "cart": "Cart"
+    },
+    "dashboard": {
+        "title": "Dashboard",
+        "totalProducts": "Total Products",
+        "newOrders": "New Orders",
+        "totalCustomers": "Customers"
+    },
+    "products": {
+        "title": "Products List",
+        "addProduct": "Add Product",
+        "searchPlaceholder": "Search products...",
+        "all": "All",
+        "categories": {
+            "rings": "Rings",
+            "necklaces": "Necklaces",
+            "bracelets": "Bracelets",
+            "earrings": "Earrings"
+        },
+        "stock": {
+            "inStock": "In Stock",
+            "lowStock": "Low Stock",
+            "outOfStock": "Out of Stock"
+        },
+        "addToCart": "Add to Cart",
+        "edit": "Edit",
+        "modal": {
+            "titleAdd": "Add Product",
+            "titleEdit": "Edit Product",
+            "name": "Product Name",
+            "price": "Price",
+            "category": "Category",
+            "quantity": "Quantity",
+            "image": "Image URL",
+            "save": "Save",
+            "cancel": "Cancel",
+            "dragDrop": "Drag and drop image here or click to upload"
+        }
+    },
+    "cart": {
+        "title": "Shopping Cart",
+        "total": "Total",
+        "checkout": "Checkout",
+        "empty": "Cart is empty",
+        "items": "items"
+    },
+    "orders": {
+        "title": "Orders List",
+        "orderId": "Order ID",
+        "customer": "Customer",
+        "date": "Date",
+        "items": "Items",
+        "total": "Total",
+        "status": "Status",
+        "actions": "Actions",
+        "statuses": {
+            "pending": "Pending",
+            "processing": "Processing",
+            "completed": "Completed",
+            "cancelled": "Cancelled"
+        }
+    },
+    "customers": {
+        "title": "Customers List",
+        "search": "Search customers...",
+        "totalOrders": "Total Orders",
+        "totalSpent": "Total Spent",
+        "contact": "Contact Info"
+    },
+    "common": {
+        "currency": "MAD"
+    }
+}

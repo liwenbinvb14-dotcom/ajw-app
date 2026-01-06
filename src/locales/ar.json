@@ -1,0 +1,80 @@
+{
+    "nav": {
+        "dashboard": "الرئيسية",
+        "products": "المنتجات",
+        "orders": "الطلبات",
+        "customers": "العملاء",
+        "settings": "الإعدادات",
+        "cart": "السلة"
+    },
+    "dashboard": {
+        "title": "لوحة التحكم",
+        "totalProducts": "إجمالي المنتجات",
+        "newOrders": "طلبات جديدة",
+        "totalCustomers": "العملاء"
+    },
+    "products": {
+        "title": "قائمة المنتجات",
+        "addProduct": "إضافة منتج",
+        "searchPlaceholder": "بحث عن منتج...",
+        "all": "الكل",
+        "categories": {
+            "rings": "خواتم",
+            "necklaces": "قلائد",
+            "bracelets": "أساور",
+            "earrings": "أقراط"
+        },
+        "stock": {
+            "inStock": "متوفر",
+            "lowStock": "كمية قليلة",
+            "outOfStock": "نفد"
+        },
+        "addToCart": "إضافة للسلة",
+        "edit": "تعديل",
+        "modal": {
+            "titleAdd": "إضافة منتج",
+            "titleEdit": "تعديل المنتج",
+            "name": "اسم المنتج",
+            "price": "السعر",
+            "category": "الفئة",
+            "quantity": "الكمية",
+            "image": "رابط الصورة",
+            "save": "حفظ",
+            "cancel": "إلغاء",
+            "dragDrop": "اسحب وأفلت الصورة هنا أو انقر للرفع"
+        }
+    },
+    "cart": {
+        "title": "سلة الطلبات",
+        "total": "المجموع",
+        "checkout": "إتمام الطلب",
+        "empty": "السلة فارغة",
+        "items": "منتجات"
+    },
+    "orders": {
+        "title": "قائمة الطلبات",
+        "orderId": "رقم الطلب",
+        "customer": "العميل",
+        "date": "التاريخ",
+        "items": "المنتجات",
+        "total": "الإجمالي",
+        "status": "الحالة",
+        "actions": "الإجراءات",
+        "statuses": {
+            "pending": "قيد الانتظار",
+            "processing": "جاري التجهيز",
+            "completed": "مكتمل",
+            "cancelled": "ملغي"
+        }
+    },
+    "customers": {
+        "title": "قائمة العملاء",
+        "search": "بحث عن عميل...",
+        "totalOrders": "إجمالي الطلبات",
+        "totalSpent": "إجمالي المبيعات",
+        "contact": "معلومات الاتصال"
+    },
+    "common": {
+        "currency": "د.م."
+    }
+}
